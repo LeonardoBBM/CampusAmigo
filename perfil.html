@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Perfil</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="index.html">CampusAmigo</a>
+        <span class="badge">beta</span>
+      </div>
+
+      <nav class="links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+      </nav>
+
+      <div class="actions">
+        <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
+        <span id="nav-auth"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Perfil</h1>
+
+    <div id="loggedOut" class="notice danger" hidden>
+      No has iniciado sesión. <a href="login.html"><b>Ir a Login</b></a>
+    </div>
+
+    <div id="loggedIn" class="grid" hidden style="margin-top:14px">
+      <section class="card" style="grid-column: span 6">
+        <h3>Mis datos</h3>
+        <p class="small">Sesión simulada.</p>
+        <hr/>
+        <div class="row"><span class="small">Nombre</span><b id="pName">—</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Correo</span><b id="pEmail">—</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Rol</span><b id="pRole">Cliente</b></div>
+
+        <div style="height:14px"></div>
+        <button id="logout" class="btn">Cerrar sesión</button>
+      </section>
+
+      <section class="card" style="grid-column: span 6">
+        <h3>Mis compras</h3>
+        <p class="small">Por ahora historial simulado.</p>
+        <hr/>
+        <ul class="small" style="margin:0;padding-left:18px">
+          <li>Pedido #A-1023 — <b>Simulado</b></li>
+          <li>Pedido #A-1008 — <b>Simulado</b></li>
+          <li>Pedido #A-0991 — <b>Simulado</b></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    ensureSeed(); updateCartBadge();
+    renderProfile();
+  </script>
+</body>
+</html>

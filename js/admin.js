@@ -117,7 +117,7 @@ document.querySelector("#save").addEventListener("click", ()=>{
 
   saveProducts(products);
   ok.hidden = false;
-  ok.textContent = "Guardado (simulado).";
+  ok.textContent = "Guardado.";
   render();
 });
 

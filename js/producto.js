@@ -43,5 +43,5 @@ if(!p){
       <hr/>
       <a class="btn" href="producto.html?id=${encodeURIComponent(x.id)}">Ver detalle</a>
     </article>
-  `).join("") || `<p class="small">No hay relacionados aún (simulado).</p>`;
+  `).join("") || `<p class="small">No hay relacionados aún.</p>`;
 }

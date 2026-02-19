@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CampusAmigo</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
   <header>
     <div class="nav">
@@ -14,23 +16,23 @@
         <a href="index.html">CampusAmigo</a>
         <span class="badge">beta</span>
       </div>
+
       <nav class="links">
         <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
-        <a href="login.html">Login</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="admin/index.html">Admin</a>
       </nav>
+
       <div class="actions">
         <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
-        <a class="btn primary" href="catalogo.html">Explorar</a>
+        <span id="nav-auth"></span>
       </div>
     </div>
   </header>
 
   <main class="container hero">
     <h1>Compra y ofrece productos y servicios entre estudiantes.</h1>
-    <p>CampusAmigo organiza lo que normalmente se hace por WhatsApp: electrónica, comida y servicios técnicos dentro del campus.</p>
+    <p>CampusAmigo organiza lo que normalmente se hace por WhatsApp: electrónica, comida y servicios técnicos dentro del
+      campus.</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
       <a class="btn primary" href="catalogo.html">Ver catálogo</a>
       <a class="btn" href="admin/index.html">Panel admin</a>
@@ -54,9 +56,12 @@
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+
   <script>
     ensureSeed();
     updateCartBadge();
   </script>
 </body>
+
 </html>
