@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Admin Productos</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="../index.html">CampusAmigo</a>
+        <span class="badge">admin</span>
+      </div>
+      <nav class="links">
+        <a href="index.html">Panel</a>
+        <a href="productos.html">Productos</a>
+        <a href="#">Pedidos</a>
+        <a href="#">Promociones</a>
+      </nav>
+      <div class="actions">
+        <button class="btn primary" id="new">Agregar producto</button>
+        <a class="btn" href="../catalogo.html">Ver tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Gestión de productos</h1>
+    <div class="card" style="margin-top:14px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th class="right">Precio</th>
+            <th>Etiqueta</th>
+            <th class="right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <div class="card" id="formCard" style="margin-top:14px" hidden>
+      <h3 id="formTitle">Agregar producto</h3>
+      <div class="grid" style="margin-top:10px">
+        <div style="grid-column: span 6">
+          <label class="small">Nombre</label>
+          <input class="input" id="fname" placeholder="Ej. Cables Dupont (pack)" />
+        </div>
+        <div style="grid-column: span 3">
+          <label class="small">Precio</label>
+          <input class="input" id="fprice" type="number" min="1" placeholder="100" />
+        </div>
+        <div style="grid-column: span 3">
+          <label class="small">Categoría</label>
+          <select id="fcat">
+            <option value="electronica">Electrónica</option>
+            <option value="servicio">Servicio</option>
+            <option value="comida">Comida</option>
+          </select>
+        </div>
+        <div style="grid-column: span 4">
+          <label class="small">Etiqueta</label>
+          <select id="ftag">
+            <option value="">(ninguna)</option>
+            <option value="Nuevo">Nuevo</option>
+            <option value="Oferta">Oferta</option>
+          </select>
+        </div>
+        <div style="grid-column: span 8">
+          <label class="small">Descripción</label>
+          <input class="input" id="fdesc" placeholder="Descripción corta..." />
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:14px">
+        <button class="btn" id="cancel">Cancelar</button>
+        <div style="display:flex;gap:10px">
+          <button class="btn primary" id="save">Guardar</button>
+        </div>
+      </div>
+
+      <div id="ok" class="notice" hidden style="margin-top:12px">Guardado (simulado).</div>
+    </div>
+  </main>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

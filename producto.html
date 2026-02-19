@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Producto</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="index.html">CampusAmigo</a>
+        <span class="badge">beta</span>
+      </div>
+      <nav class="links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="login.html">Login</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="admin/index.html">Admin</a>
+      </nav>
+      <div class="actions">
+        <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
+        <a class="btn primary" href="catalogo.html">Explorar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="pill" href="catalogo.html">← Regresar al catálogo</a>
+
+    <div class="grid" style="margin-top:14px">
+      <section class="card" style="grid-column: span 7">
+        <div class="prod-img" style="height:260px">Detalle</div>
+      </section>
+
+      <section class="card" style="grid-column: span 5">
+        <div id="tag"></div>
+        <h1 id="name" style="margin:8px 0 8px">—</h1>
+        <div class="row">
+          <span class="pill" id="cat">—</span>
+          <span class="price" id="price">$0.00</span>
+        </div>
+        <p class="small" id="desc" style="margin-top:12px">—</p>
+
+        <hr/>
+        <div class="row">
+          <label class="small">Cantidad</label>
+          <input id="qty" class="input" type="number" min="1" value="1" style="width:110px"/>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button id="add" class="btn primary">Agregar al carrito</button>
+          <a class="btn" href="carrito.html">Ver carrito</a>
+        </div>
+
+        <div id="msg" style="margin-top:12px" class="notice" hidden></div>
+      </section>
+    </div>
+
+    <h2 style="margin-top:24px">Relacionados</h2>
+    <section id="rel" class="products"></section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/producto.js"></script>
+</body>
+</html>

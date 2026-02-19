@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Admin</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="../index.html">CampusAmigo</a>
+        <span class="badge">admin</span>
+      </div>
+      <nav class="links">
+        <a href="index.html">Panel</a>
+        <a href="productos.html">Productos</a>
+        <a href="#">Pedidos</a>
+        <a href="#">Promociones</a>
+      </nav>
+      <div class="actions">
+        <a class="btn" href="../catalogo.html">Volver a tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Panel de administrador</h1>
+    <div class="grid" style="margin-top:14px">
+      <div class="card" style="grid-column: span 4">
+        <h3>Productos</h3>
+        <p class="small">Total: <b id="pcount">—</b></p>
+      </div>
+      <div class="card" style="grid-column: span 4">
+        <h3>Pedidos</h3>
+        <p class="small">Simulado: <b>5</b></p>
+      </div>
+      <div class="card" style="grid-column: span 4">
+        <h3>Usuarios</h3>
+        <p class="small">Simulado: <b>23</b></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    ensureSeed();
+    document.querySelector("#pcount").textContent = getProducts().length;
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Carrito</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="index.html">CampusAmigo</a>
+        <span class="badge">beta</span>
+      </div>
+      <nav class="links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="login.html">Login</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="admin/index.html">Admin</a>
+      </nav>
+      <div class="actions">
+        <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
+        <a class="btn primary" href="catalogo.html">Seguir comprando</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Carrito</h1>
+    <div id="empty" class="notice" hidden>Tu carrito está vacío. Ve al <a href="catalogo.html"><b>catálogo</b></a>.</div>
+
+    <div class="grid" style="margin-top:14px">
+      <section class="card" style="grid-column: span 8">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th class="right">Precio</th>
+              <th class="right">Cantidad</th>
+              <th class="right">Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+
+      <aside class="card" style="grid-column: span 4">
+        <h3>Resumen</h3>
+        <div class="row"><span class="small">Subtotal</span><b id="sub">$0.00</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Total</span><b id="tot">$0.00</b></div>
+        <hr/>
+        <button id="pay" class="btn primary" style="width:100%">Ir a pagar</button>
+        <p class="small" style="margin-top:10px">Checkout disponible en Bloque 4 (por ahora es simulación).</p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/carrito.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Catálogo</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="index.html">CampusAmigo</a>
+        <span class="badge">beta</span>
+      </div>
+      <nav class="links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="login.html">Login</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="admin/index.html">Admin</a>
+      </nav>
+      <div class="actions">
+        <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
+        <a class="btn primary" href="catalogo.html">Explorar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Catálogo</h1>
+    <p class="small">Productos y servicios entre estudiantes (simulado, pero con flow real).</p>
+
+    <div class="toolbar">
+      <input id="q" class="input" placeholder="Buscar... (ej. arduino, brownies)" />
+      <select id="cat">
+        <option value="all">Todas las categorías</option>
+        <option value="electronica">Electrónica</option>
+        <option value="servicio">Servicios</option>
+        <option value="comida">Comida</option>
+      </select>
+      <select id="sort">
+        <option value="default">Orden: recomendado</option>
+        <option value="price_asc">Precio: menor a mayor</option>
+        <option value="price_desc">Precio: mayor a menor</option>
+      </select>
+      <span class="pill" id="count">0 items</span>
+    </div>
+
+    <section id="list" class="products"></section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+</html>
