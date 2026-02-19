@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CampusAmigo | Contacto</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
+        <a href="index.html">CampusAmigo</a>
+        <span class="badge">beta</span>
+      </div>
+
+      <nav class="links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="actions">
+        <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
+        <span id="nav-auth"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contacto</h1>
+    <p class="small">Formulario para contacto.</p>
+
+    <section class="card" style="max-width:640px">
+      <label class="small">Nombre</label>
+      <input id="cName" class="input" placeholder="Tu nombre"/>
+
+      <div style="height:10px"></div>
+
+      <label class="small">Correo</label>
+      <input id="cEmail" class="input" placeholder="tu@correo.com"/>
+
+      <div style="height:10px"></div>
+
+      <label class="small">Mensaje</label>
+      <input id="cMsg" class="input" placeholder="¿En qué te ayudamos?"/>
+
+      <div style="height:14px"></div>
+
+      <button id="send" class="btn primary">Enviar</button>
+
+      <div id="ok" class="notice" hidden style="margin-top:12px"></div>
+
+      <hr/>
+      <p class="small">
+        Redes:
+        <span class="pill">Instagram</span>
+        <span class="pill">Facebook</span>
+        <span class="pill">WhatsApp</span>
+        <span class="pill">X</span>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    ensureSeed(); updateCartBadge();
+
+    document.querySelector("#send").addEventListener("click", ()=>{
+      const name = document.querySelector("#cName").value.trim();
+      const email = document.querySelector("#cEmail").value.trim();
+      const msg = document.querySelector("#cMsg").value.trim();
+
+      const ok = document.querySelector("#ok");
+      ok.hidden = false;
+
+      if(!name || !email || !msg){
+        ok.classList.add("danger");
+        ok.textContent = "Completa los campos antes de enviar.";
+        return;
+      }
+
+      ok.classList.remove("danger");
+      ok.textContent = "Mensaje simulado.";
+      
+      // Limpia el formulario
+      document.querySelector("#cName").value = "";
+      document.querySelector("#cEmail").value = "";
+      document.querySelector("#cMsg").value = "";
+    });
+  </script>
+</body>
+</html>
