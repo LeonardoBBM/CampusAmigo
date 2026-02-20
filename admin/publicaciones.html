@@ -1,27 +1,54 @@
 <!doctype html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CampusAmigo | Admin Productos</title>
+  <title>CampusAmigo | Admin Moderación</title>
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
 
 <body>
-  <header>
-  </header>
+  <header></header>
 
   <main class="container">
-    <h1>Gestión de productos</h1>
+    <h1>Moderación del catálogo</h1>
+    <p class="small">Aquí el administrador puede editar o eliminar productos seed y publicaciones de usuarios.</p>
+
     <div class="card" style="margin-top:14px">
+      <div class="toolbar">
+        <input id="q" class="input" placeholder="Buscar... (nombre, vendedor, categoría)" />
+
+        <select id="type">
+          <option value="all">Todo</option>
+          <option value="seed">Seed</option>
+          <option value="user">Usuarios</option>
+        </select>
+
+        <select id="cat">
+          <option value="all">Todas las categorías</option>
+          <option value="electronica">Electrónica</option>
+          <option value="servicio">Servicios</option>
+          <option value="comida">Comida</option>
+        </select>
+
+        <select id="sort">
+          <option value="recent">Orden: más recientes</option>
+          <option value="price_asc">Precio: menor a mayor</option>
+          <option value="price_desc">Precio: mayor a menor</option>
+          <option value="name_asc">Nombre: A-Z</option>
+        </select>
+
+        <span class="pill" id="count">0 items</span>
+      </div>
+
       <table class="table">
         <thead>
           <tr>
-            <th>Nombre</th>
+            <th>Item</th>
+            <th>Tipo</th>
             <th>Categoría</th>
             <th class="right">Precio</th>
-            <th>Etiqueta</th>
+            <th>Vendedor</th>
             <th class="right">Acciones</th>
           </tr>
         </thead>
@@ -29,17 +56,21 @@
       </table>
     </div>
 
+    <!-- Form editar -->
     <div class="card" id="formCard" style="margin-top:14px" hidden>
-      <h3 id="formTitle">Agregar producto</h3>
+      <h3 id="formTitle">Editar item</h3>
+
       <div class="grid" style="margin-top:10px">
         <div style="grid-column: span 6">
           <label class="small">Nombre</label>
-          <input class="input" id="fname" placeholder="Ej. Cables Dupont (pack)" />
+          <input class="input" id="fname" placeholder="Nombre" />
         </div>
+
         <div style="grid-column: span 3">
           <label class="small">Precio</label>
           <input class="input" id="fprice" type="number" min="1" placeholder="100" />
         </div>
+
         <div style="grid-column: span 3">
           <label class="small">Categoría</label>
           <select id="fcat">
@@ -48,6 +79,7 @@
             <option value="comida">Comida</option>
           </select>
         </div>
+
         <div style="grid-column: span 4">
           <label class="small">Etiqueta</label>
           <select id="ftag">
@@ -56,6 +88,7 @@
             <option value="Oferta">Oferta</option>
           </select>
         </div>
+
         <div style="grid-column: span 8">
           <label class="small">Descripción</label>
           <input class="input" id="fdesc" placeholder="Descripción corta..." />
@@ -63,29 +96,19 @@
       </div>
 
       <div class="row" style="margin-top:14px">
-        <button class="btn" id="cancel">Cancelar</button>
-        <div style="display:flex;gap:10px">
-          <button class="btn primary" id="save">Guardar</button>
-        </div>
+        <button class="btn" id="cancel" type="button">Cancelar</button>
+        <button class="btn primary" id="save" type="button">Guardar cambios</button>
       </div>
 
-      <div id="ok" class="notice" hidden style="margin-top:12px">Guardado (simulado).</div>
+      <div id="ok" class="notice" hidden style="margin-top:12px">Guardado.</div>
     </div>
   </main>
 
   <script src="../js/data.js"></script>
   <script src="../js/app.js"></script>
-  <script src="../js/admin.js"></script>
-  <script src="js/nav.js"></script>
+  <script src="../js/admin_nav.js"></script>
   <script src="../js/auth.js"></script>
-  <script>
-    // Candado simple de admin
-    const u = currentUser();
-    if (!u || u.role !== "admin") {
-      alert("Acceso solo para administrador (simulado).");
-      location.href = "../login.html";
-    }
-  </script>
+  <script src="../js/admin_guard.js"></script>
+  <script src="../js/admin_moderacion.js"></script>
 </body>
-
 </html>

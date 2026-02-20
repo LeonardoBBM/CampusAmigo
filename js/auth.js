@@ -63,40 +63,41 @@ function currentUser() {
 }
 
 // ===== Navbar dynamic =====
-function renderNavAuth() {
+function renderNavAuth(){
   const container = document.querySelector("#nav-auth");
-  if (!container) return;
+  if(!container) return;
 
   const user = currentUser();
+  const isAdminArea = location.pathname.includes("/admin/");
 
-  if (!user) {
+  if(!user){
     container.innerHTML = `
-      <a class="btn" href="login.html">Login</a>
-      <a class="btn" href="registro.html">Registro</a>
+      <a class="btn" href="../login.html">Login</a>
+      <a class="btn" href="../registro.html">Registro</a>
     `;
     return;
   }
 
-  const hidePublish =
-    location.pathname.endsWith("login.html") ||
-    location.pathname.endsWith("registro.html");
-
-  container.innerHTML = `
-    ${(!hidePublish && user.role !== 'admin')
-      ? `<a class="btn primary" href="publicar.html">Publicar</a>`
-      : ``}
-    <a class="pill" href="${user.role === 'admin' ? 'admin/index.html' : 'perfil.html'}">👤 ${user.name}</a>
-    <a class="btn" href="#" id="nav-logout">Salir</a>
-  `;
-
-  const logoutBtn = document.querySelector("#nav-logout");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      logoutUser();
-      location.href = "index.html";
-    });
+  // ===== Si estamos en ADMIN =====
+  if(isAdminArea){
+    container.innerHTML = `
+      <span class="pill">👤 ${user.name}</span>
+      <a class="btn" href="#" id="nav-logout">Salir</a>
+    `;
+  } else {
+    // ===== Sitio normal =====
+    container.innerHTML = `
+      ${user.role !== 'admin' ? `<a class="btn primary" href="publicar.html">Publicar</a>` : ``}
+      <a class="pill" href="${user.role === 'admin' ? 'admin/index.html' : 'perfil.html'}">👤 ${user.name}</a>
+      <a class="btn" href="#" id="nav-logout">Salir</a>
+    `;
   }
+
+  document.querySelector("#nav-logout")?.addEventListener("click", (e)=>{
+    e.preventDefault();
+    logoutUser();
+    location.href = isAdminArea ? "../index.html" : "index.html";
+  });
 }
 
 // ===== Perfil =====
