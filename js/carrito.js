@@ -48,10 +48,20 @@ function render() {
   tot.textContent = money(subtotal); // simple
 
   document.querySelectorAll("[data-inc]").forEach(b => {
-    b.addEventListener("click", () => { setCartQty(b.dataset.inc, getCart().find(i => i.id === b.dataset.inc).qty + 1); render(); });
+    b.addEventListener("click", () => {
+      const item = getCart().find(i => i.id === b.dataset.inc);
+      const next = (item ? item.qty : 0) + 1;
+      setCartQty(b.dataset.inc, next);
+      render();
+    });
   });
   document.querySelectorAll("[data-dec]").forEach(b => {
-    b.addEventListener("click", () => { setCartQty(b.dataset.dec, getCart().find(i => i.id === b.dataset.dec).qty - 1); render(); });
+    b.addEventListener("click", () => {
+      const item = getCart().find(i => i.id === b.dataset.dec);
+      const next = (item ? item.qty : 0) - 1;
+      setCartQty(b.dataset.dec, next);
+      render();
+    });
   });
   document.querySelectorAll("[data-del]").forEach(b => {
     b.addEventListener("click", () => {
@@ -62,7 +72,7 @@ function render() {
   updateCartBadge();
 }
 
-document.querySelector("#pay").addEventListener("click", () => {
+document.querySelector("#checkout")?.addEventListener("click", () => {
   const u = (typeof currentUser === "function") ? currentUser() : null;
 
   if (!u) {
@@ -72,7 +82,27 @@ document.querySelector("#pay").addEventListener("click", () => {
     return;
   }
 
-  alert("Aun no esta el checkout.");
+  const cart = getCart();
+  if (!cart || cart.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  // Guardamos un borrador para usarlo en entrega
+  LS.set("campusamigo_checkout_draft", {
+    userId: u.id,
+    createdAt: new Date().toISOString()
+  });
+
+  location.href = "entrega.html";
+});
+
+document.querySelector("#clear")?.addEventListener("click", () => {
+  if (confirm("¿Vaciar carrito?")) {
+    LS.set(KEYS.cart, []);
+    updateCartBadge();
+    render();
+  }
 });
 
 

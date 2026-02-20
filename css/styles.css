@@ -294,3 +294,293 @@ hr {
   border-color: rgba(255, 90, 90, .35);
   background: rgba(255, 90, 90, .08)
 }
+
+.btn.danger {
+  background: #3a0f1f;
+  border: 1px solid #ff3c7a;
+  color: #ff6fa5;
+}
+
+.btn.danger:hover {
+  background: #ff3c7a;
+  color: #000;
+}
+
+/* =========================
+   FIX: Catálogo uniforme
+   ========================= */
+
+/* Asegura que todas las cards se estiren igual dentro del grid */
+.products {
+  align-items: stretch;
+}
+
+/* La card de producto como columna */
+.card.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Contenido interno como columna también */
+.card.product .p-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Reserva altura para el título (2 líneas max) */
+.card.product h3 {
+  margin: 6px 0 0;
+  line-height: 1.2;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: calc(1.2em * 2);
+  /* reserva espacio para 2 líneas */
+}
+
+/* El bloque de botones SIEMPRE abajo */
+.card.product .p-actions {
+  margin-top: auto;
+  /* magia: empuja al fondo */
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Mantener botones alineados */
+.card.product .p-actions .btn {
+  white-space: nowrap;
+}
+
+/* =========================
+   FIX: posiciones constantes
+   ========================= */
+
+/* Zona de tag: siempre mide lo mismo aunque no haya tag */
+.card.product .p-tag {
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+/* Zona del título: ya la reservamos, pero reforzamos */
+.card.product .p-title {
+  min-height: calc(1.2em * 2);
+}
+
+/* Zona de meta (categoría + precio) fija */
+.card.product .p-meta {
+  min-height: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+
+/* =========================
+   NAV Responsive (móvil)
+   ========================= */
+
+.nav-toggle {
+  display: none;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+/* En pantallas chicas */
+@media (max-width: 760px) {
+  .nav {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Oculta links por defecto en móvil */
+  .links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 0 0;
+  }
+
+  /* Muestra botón hamburguesa */
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Acciones no deben empalmar */
+  .actions {
+    margin-left: auto;
+    gap: 8px;
+  }
+
+  /* Cuando se abre el menú */
+  .nav.open .links {
+    display: flex;
+  }
+
+  /* Estilo links en modo menú */
+  .links a {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .04);
+  }
+}
+
+/* =========================
+   NAV con panel (nav.js)
+   ========================= */
+
+.nav-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Botón hamburguesa oculto en desktop */
+.nav-toggle {
+  display: none;
+}
+
+/* Desktop: links al centro / actions a la derecha (como antes) */
+.nav .links {
+  margin: 0 auto;
+}
+
+/* Móvil: logo + toggle arriba, panel desplegable abajo */
+@media (max-width: 760px) {
+  .nav {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .nav-panel {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding-top: 12px;
+  }
+
+  .nav.open .nav-panel {
+    display: flex;
+  }
+
+  .nav .links {
+    margin: 0;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav .links a {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .04);
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  #nav-auth {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* =========================
+   Carrito: botones resumen
+   ========================= */
+.checkout-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.checkout-actions #pay {
+  flex: 1;
+}
+
+/* Danger outline (menos agresivo visualmente) */
+.btn.danger.outline {
+  background: transparent;
+  border: 1px solid #ff3c7a;
+  color: #ff6fa5;
+}
+
+.btn.danger.outline:hover {
+  background: rgba(255, 60, 122, .14);
+  color: var(--text);
+}
+
+/* =========================
+   FIX SELECT DARK MODE
+   ========================= */
+
+select {
+  background: rgba(18, 26, 51, 0.95);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Dropdown options */
+select option {
+  background: #121a33;
+  color: #ffffff;
+}
+
+/* Hover (algunos navegadores lo respetan) */
+select option:hover {
+  background: #1d2a4a;
+}
+
+/* Cuando está seleccionado */
+select option:checked {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #121a33;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 36px 10px 12px; /* espacio para la nueva flecha */
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Flecha personalizada */
+select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23e8ecff' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}

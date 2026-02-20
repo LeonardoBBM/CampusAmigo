@@ -13,7 +13,8 @@ function render(){
   const term = (q.value||"").trim().toLowerCase();
   if(term){
     items = items.filter(p =>
-      p.name.toLowerCase().includes(term) || (p.desc||"").toLowerCase().includes(term)
+      (p.name||"").toLowerCase().includes(term) ||
+      (p.desc||"").toLowerCase().includes(term)
     );
   }
 
@@ -28,20 +29,26 @@ function render(){
   list.innerHTML = items.map(p => {
     const tagClass = p.tag === "Nuevo" ? "new" : (p.tag === "Oferta" ? "sale" : "");
     const tagHtml = p.tag ? `<span class="tag ${tagClass}">${p.tag}</span>` : "";
+
     return `
       <article class="card product">
         <div class="prod-img">CampusAmigo</div>
-        <div style="margin-top:10px">
-          ${tagHtml}
-          <div class="row">
-            <h3 style="margin:6px 0 0">${p.name}</h3>
+
+        <div class="p-body" style="margin-top:10px">
+          <div class="p-tag">
+            ${tagHtml}
           </div>
-          <div class="row" style="margin-top:8px">
+
+          <h3 class="p-title">${p.name}</h3>
+
+          <div class="p-meta">
             <span class="small">${p.category}</span>
             <span class="price">${money(p.price)}</span>
           </div>
+
           <hr/>
-          <div class="row">
+
+          <div class="p-actions">
             <a class="btn" href="producto.html?id=${encodeURIComponent(p.id)}">Ver detalle</a>
             <button class="btn primary" data-add="${p.id}">Agregar</button>
           </div>
@@ -50,15 +57,19 @@ function render(){
     `;
   }).join("");
 
-  // handlers Agregar
   document.querySelectorAll("[data-add]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
       addToCart(btn.dataset.add, 1);
+      updateCartBadge();
       btn.textContent = "Agregado ✓";
       setTimeout(()=>btn.textContent="Agregar", 700);
     });
   });
 }
 
-[q, cat, sort].forEach(el => el.addEventListener("input", render));
+[q, cat, sort].forEach(el => {
+  el.addEventListener("input", render);
+  el.addEventListener("change", render);
+});
+
 render();

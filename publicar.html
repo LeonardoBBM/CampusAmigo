@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CampusAmigo | Publicar</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <header>
+    </header>
+
+    <main class="container">
+        <h1>Publicar producto/servicio</h1>
+        <p class="small">Esto crea un producto ligado a tu usuario (seller). Marketplace sin chat.</p>
+
+        <section class="card" style="max-width:760px">
+            <div class="grid">
+                <div style="grid-column: span 8">
+                    <label class="small">Nombre</label>
+                    <input id="name" class="input" placeholder="Ej. Pack de cables Dupont" />
+                </div>
+
+                <div style="grid-column: span 4">
+                    <label class="small">Precio</label>
+                    <input id="price" class="input" type="number" min="1" placeholder="100" />
+                </div>
+
+                <div style="grid-column: span 4">
+                    <label class="small">Categoría</label>
+                    <select id="cat">
+                        <option value="electronica">Electrónica</option>
+                        <option value="servicio">Servicio</option>
+                        <option value="comida">Comida</option>
+                    </select>
+                </div>
+
+                <div style="grid-column: span 4">
+                    <label class="small">Etiqueta</label>
+                    <select id="tag">
+                        <option value="">(ninguna)</option>
+                        <option value="Nuevo">Nuevo</option>
+                        <option value="Oferta">Oferta</option>
+                    </select>
+                </div>
+
+                <div style="grid-column: span 12">
+                    <label class="small">Descripción</label>
+                    <input id="desc" class="input"
+                        placeholder="Ej. Incluye 40 piezas, nuevos, entrega en biblioteca." />
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:14px; gap:10px; flex-wrap:wrap">
+                <a class="btn" href="mis_publicaciones.html">Ver mis publicaciones</a>
+                <button id="save" class="btn primary">Publicar</button>
+            </div>
+
+            <div id="msg" class="notice" hidden style="margin-top:12px"></div>
+
+            <hr />
+            <p class="small">
+                Tip: el vendedor se mostrará en el detalle del producto.
+            </p>
+        </section>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/marketplace.js"></script>
+    <script src="js/publicar.js"></script>
+    <script>
+        ensureSeed();
+        updateCartBadge();
+    </script>
+</body>
+
+</html>

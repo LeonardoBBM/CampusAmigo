@@ -6,11 +6,11 @@ function getSession() { return LS.get(KEYS.session, null); }
 function setSession(s) { LS.set(KEYS.session, s); }
 
 // ===== Redirección post-login (candado) =====
-function setRedirectAfterLogin(url){
+function setRedirectAfterLogin(url) {
   LS.set("campusamigo_redirect", { url });
 }
 
-function consumeRedirectAfterLogin(){
+function consumeRedirectAfterLogin() {
   const r = LS.get("campusamigo_redirect", null);
   localStorage.removeItem("campusamigo_redirect");
   return r?.url || null;
@@ -63,13 +63,13 @@ function currentUser() {
 }
 
 // ===== Navbar dynamic =====
-function renderNavAuth(){
+function renderNavAuth() {
   const container = document.querySelector("#nav-auth");
-  if(!container) return;
+  if (!container) return;
 
   const user = currentUser();
 
-  if(!user){
+  if (!user) {
     container.innerHTML = `
       <a class="btn" href="login.html">Login</a>
       <a class="btn" href="registro.html">Registro</a>
@@ -77,16 +77,26 @@ function renderNavAuth(){
     return;
   }
 
+  const hidePublish =
+    location.pathname.endsWith("login.html") ||
+    location.pathname.endsWith("registro.html");
+
   container.innerHTML = `
+    ${(!hidePublish && user.role !== 'admin')
+      ? `<a class="btn primary" href="publicar.html">Publicar</a>`
+      : ``}
     <a class="pill" href="${user.role === 'admin' ? 'admin/index.html' : 'perfil.html'}">👤 ${user.name}</a>
     <a class="btn" href="#" id="nav-logout">Salir</a>
   `;
 
-  document.querySelector("#nav-logout").addEventListener("click", (e)=>{
-    e.preventDefault();
-    logoutUser();
-    location.href = "index.html";
-  });
+  const logoutBtn = document.querySelector("#nav-logout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      logoutUser();
+      location.href = "index.html";
+    });
+  }
 }
 
 // ===== Perfil =====
@@ -120,13 +130,13 @@ function renderProfile() {
   }
 }
 
-function ensureAdminUser(){
+function ensureAdminUser() {
   const users = getUsers();
-  const exists = users.some(u => u.email === "admin@campusamigo.test");
-  if(exists) return;
+  const exists = users.some(u => u.role === "admin");
+  if (exists) return;
 
   users.push({
-    id: "Leonardo Admin",
+    id: "u_admin",
     name: "Administrador",
     email: "admin@admin.com",
     pass: "123",
@@ -137,11 +147,11 @@ function ensureAdminUser(){
 
 // ===== Auto wiring =====
 document.addEventListener("DOMContentLoaded", () => {
-  // Siempre renderiza el nav si existe
-  renderNavAuth();
-
   //Revisamos si es admin
   ensureAdminUser();
+
+  // Siempre renderiza el nav
+  renderNavAuth();
 
   // Registro
   if (location.pathname.endsWith("registro.html")) {
@@ -151,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pass = document.querySelector("#pass");
     const msg = document.querySelector("#msg");
 
-    if(btn){
+    if (btn) {
       btn.addEventListener("click", () => {
         const r = registerUser(name.value, email.value, pass.value);
         msg.hidden = false;
@@ -169,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pass = document.querySelector("#pass");
     const msg = document.querySelector("#msg");
 
-    if(btn){
+    if (btn) {
       btn.addEventListener("click", () => {
         const r = loginUser(email.value, pass.value);
         if (!r.ok) {
