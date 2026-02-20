@@ -1,39 +1,48 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CampusAmigo | Login</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
-  <header>
-  </header>
+  <header></header>
 
-  <main class="container">
-    <h1>Login</h1>
-    <p class="small">No hay validación real, pero sí sesión en LocalStorage.</p>
+  <main class="container auth-wrap">
+    <section class="card auth-card">
+      <div class="auth-head">
+        <h1>Iniciar sesión</h1>
+        <p>Accede para publicar, acordar entregas y gestionar tu carrito.</p>
+      </div>
 
-    <section class="card" style="max-width:520px">
-      <label class="small">Correo</label>
-      <input id="email" class="input" placeholder="alguien@tec.mx" />
+      <div id="msg" class="notice danger" hidden></div>
 
-      <div style="height:10px"></div>
+      <div class="auth-form">
+        <div class="field">
+          <label for="email">Correo</label>
+          <input id="email" class="input" type="email" placeholder="alguien@tec.mx" autocomplete="email" />
+        </div>
 
-      <label class="small">Contraseña</label>
-      <input id="pass" class="input" type="password" placeholder="••••••••" />
+        <div class="field">
+          <label for="pass">Contraseña</label>
+          <input id="pass" class="input" type="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
 
-      <div style="height:14px"></div>
+        <div class="auth-actions">
+          <button id="btn" class="btn primary block" type="button">Entrar</button>
+          <div class="row">
+            <span class="small">¿No tienes cuenta?</span>
+            <a class="pill" href="registro.html">Regístrate</a>
+          </div>
+        </div>
 
-      <button id="btn" class="btn primary" style="width:100%">Entrar</button>
-
-      <div id="msg" class="notice danger" hidden style="margin-top:12px"></div>
-
-      <p class="small" style="margin-top:12px">
-        ¿No tienes cuenta? <a href="registro.html"><b>Regístrate</b></a>
-      </p>
-
-      <hr/>
+        <div class="hint">
+          <b>Admin:</b> correo <code>admin@admin.com</code> • contraseña <code>123</code>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -41,8 +50,6 @@
   <script src="js/app.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/auth.js"></script>
-  <script>
-    ensureSeed(); updateCartBadge();
-  </script>
 </body>
+
 </html>

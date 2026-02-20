@@ -1,46 +1,55 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CampusAmigo | Contacto</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
-  <header>
-  </header>
+  <header></header>
 
-  <main class="container">
-    <h1>Contacto</h1>
-    <p class="small">Formulario para contacto.</p>
+  <main class="container auth-wrap">
+    <section class="card auth-card">
+      <div class="auth-head">
+        <h1>Contacto</h1>
+        <p>¿Tienes dudas, sugerencias o quieres colaborar? Escríbenos.</p>
+      </div>
 
-    <section class="card" style="max-width:640px">
-      <label class="small">Nombre</label>
-      <input id="cName" class="input" placeholder="Tu nombre"/>
+      <div id="msg" class="notice" hidden></div>
 
-      <div style="height:10px"></div>
+      <div class="auth-form">
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input id="name" class="input" type="text" placeholder="Tu nombre" />
+        </div>
 
-      <label class="small">Correo</label>
-      <input id="cEmail" class="input" placeholder="tu@correo.com"/>
+        <div class="field">
+          <label for="email">Correo</label>
+          <input id="email" class="input" type="email" placeholder="tu@correo.com" />
+        </div>
 
-      <div style="height:10px"></div>
+        <div class="field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" class="input" rows="4" placeholder="¿En qué te ayudamos?"></textarea>
+        </div>
 
-      <label class="small">Mensaje</label>
-      <input id="cMsg" class="input" placeholder="¿En qué te ayudamos?"/>
+        <button id="send" class="btn primary block" type="button">
+          Enviar mensaje
+        </button>
+      </div>
 
-      <div style="height:14px"></div>
+      <hr style="margin:18px 0" />
 
-      <button id="send" class="btn primary">Enviar</button>
+      <div class="small" style="margin-bottom:8px">También puedes encontrarnos en:</div>
 
-      <div id="ok" class="notice" hidden style="margin-top:12px"></div>
-
-      <hr/>
-      <p class="small">
-        Redes:
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
         <span class="pill">Instagram</span>
         <span class="pill">Facebook</span>
         <span class="pill">WhatsApp</span>
-        <span class="pill">X</span>
+      </div>
+
     </section>
   </main>
 
@@ -48,31 +57,19 @@
   <script src="js/app.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/auth.js"></script>
+
   <script>
-    ensureSeed(); updateCartBadge();
+    const btn = document.querySelector("#send");
+    const msg = document.querySelector("#msg");
 
-    document.querySelector("#send").addEventListener("click", ()=>{
-      const name = document.querySelector("#cName").value.trim();
-      const email = document.querySelector("#cEmail").value.trim();
-      const msg = document.querySelector("#cMsg").value.trim();
-
-      const ok = document.querySelector("#ok");
-      ok.hidden = false;
-
-      if(!name || !email || !msg){
-        ok.classList.add("danger");
-        ok.textContent = "Completa los campos antes de enviar.";
-        return;
-      }
-
-      ok.classList.remove("danger");
-      ok.textContent = "Mensaje simulado.";
-      
-      // Limpia el formulario
-      document.querySelector("#cName").value = "";
-      document.querySelector("#cEmail").value = "";
-      document.querySelector("#cMsg").value = "";
+    btn.addEventListener("click", ()=>{
+      msg.hidden = false;
+      msg.classList.remove("danger");
+      msg.textContent = "Mensaje enviado (simulado). Gracias por contactarnos.";
+      btn.textContent = "Enviado ✓";
+      btn.disabled = true;
     });
   </script>
+
 </body>
 </html>

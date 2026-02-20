@@ -72,8 +72,8 @@ function renderNavAuth(){
 
   if(!user){
     container.innerHTML = `
-      <a class="btn" href="../login.html">Login</a>
-      <a class="btn" href="../registro.html">Registro</a>
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn" href="registro.html">Registro</a>
     `;
     return;
   }
