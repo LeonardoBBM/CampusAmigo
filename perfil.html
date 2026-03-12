@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CampusAmigo | Perfil</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
-  <header>
-  </header>
+  <header></header>
 
   <main class="container">
     <h1>Perfil</h1>
@@ -20,11 +21,11 @@
     <div id="loggedIn" class="grid" hidden style="margin-top:14px">
       <section class="card" style="grid-column: span 6">
         <h3>Mis datos</h3>
-        <p class="small">Sesión simulada.</p>
-        <hr/>
+        <p class="small">Vista simulada.</p>
+        <hr />
         <div class="row"><span class="small">Nombre</span><b id="pName">—</b></div>
         <div class="row" style="margin-top:8px"><span class="small">Correo</span><b id="pEmail">—</b></div>
-        <div class="row" style="margin-top:8px"><span class="small">Rol</span><b id="pRole">Cliente</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Rol</span><b>Cliente</b></div>
 
         <div style="height:14px"></div>
         <button id="logout" class="btn">Cerrar sesión</button>
@@ -32,12 +33,10 @@
 
       <section class="card" style="grid-column: span 6">
         <h3>Mis compras</h3>
-        <p class="small">Por ahora historial simulado.</p>
-        <hr/>
+        <p class="small">Próximamente.</p>
+        <hr />
         <ul class="small" style="margin:0;padding-left:18px">
-          <li>Pedido #A-1023 — <b>Simulado</b></li>
-          <li>Pedido #A-1008 — <b>Simulado</b></li>
-          <li>Pedido #A-0991 — <b>Simulado</b></li>
+          <li>Sin historial aún.</li>
         </ul>
       </section>
     </div>
@@ -48,8 +47,8 @@
   <script src="js/nav.js"></script>
   <script src="js/auth.js"></script>
   <script>
-    ensureSeed(); updateCartBadge();
     renderProfile();
   </script>
 </body>
+
 </html>
