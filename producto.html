@@ -1,67 +1,52 @@
 <!doctype html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CampusAmigo | Producto</title>
+  <title>CampusAmigo | Perfil</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-  <header>
-  </header>
+  <header></header>
 
   <main class="container">
-    <a class="pill" href="catalogo.html">← Regresar al catálogo</a>
+    <h1>Perfil</h1>
 
-    <div class="grid" style="margin-top:14px">
-      <section class="card" style="grid-column: span 7">
-        <div class="prod-img" style="height:260px">Detalle</div>
-      </section>
-
-      <section class="card" style="grid-column: span 5">
-        <div id="tag"></div>
-        <h1 id="name" style="margin:8px 0 8px">—</h1>
-
-        <div class="row">
-          <span class="pill" id="cat">—</span>
-          <span class="price" id="price">$0.00</span>
-        </div>
-
-        <div class="row" style="margin-top:10px">
-          <span class="small">Vendedor</span>
-          <b id="seller">—</b>
-        </div>
-
-        <p class="small" id="desc" style="margin-top:12px">—</p>
-
-        <hr />
-        <div class="row">
-          <label class="small">Cantidad</label>
-          <input id="qty" class="input" type="number" min="1" value="1" style="width:110px" />
-        </div>
-
-        <div class="row" style="margin-top:12px; gap:10px; flex-wrap:wrap">
-          <button id="add" class="btn primary">Agregar al carrito</button>
-          <a class="btn" href="carrito.html">Ver carrito</a>
-          <button id="request" class="btn">Solicitar y acordar entrega</button>
-        </div>
-
-        <div id="msg" style="margin-top:12px" class="notice" hidden></div>
-      </section>
+    <div id="loggedOut" class="notice danger" hidden>
+      No has iniciado sesión. <a href="login.html"><b>Ir a Login</b></a>
     </div>
 
-    <h2 style="margin-top:24px">Relacionados</h2>
-    <section id="rel" class="products"></section>
+    <div id="loggedIn" class="grid" hidden style="margin-top:14px">
+      <section class="card" style="grid-column: span 6">
+        <h3>Mis datos</h3>
+        <p class="small">Vista simulada.</p>
+        <hr/>
+        <div class="row"><span class="small">Nombre</span><b id="pName">—</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Correo</span><b id="pEmail">—</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Rol</span><b>Cliente</b></div>
+
+        <div style="height:14px"></div>
+        <button id="logout" class="btn">Cerrar sesión</button>
+      </section>
+
+      <section class="card" style="grid-column: span 6">
+        <h3>Mis compras</h3>
+        <p class="small">Próximamente.</p>
+        <hr/>
+        <ul class="small" style="margin:0;padding-left:18px">
+          <li>Sin historial aún.</li>
+        </ul>
+      </section>
+    </div>
   </main>
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/marketplace.js"></script>
-  <script src="js/producto.js"></script>
+  <script>
+    renderProfile();
+  </script>
 </body>
-
 </html>
