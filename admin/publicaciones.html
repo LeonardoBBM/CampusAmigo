@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CampusAmigo | Admin Moderación</title>
+  <title>CampusAmigo | Gestión de productos</title>
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
 
@@ -13,33 +12,37 @@
 
   <main class="container">
     <h1>Gestión de productos</h1>
-    <p class="small">Vista visual para administrar productos del catálogo.</p>
+    <p class="small">CRUD visual del catálogo: agregar, consultar, editar y eliminar productos.</p>
 
     <div class="card" style="margin-top:14px">
-      <div class="toolbar">
-        <input id="q" class="input" placeholder="Buscar... (nombre, vendedor, categoría)" />
+      <div class="toolbar" style="justify-content:space-between">
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <input id="q" class="input" placeholder="Buscar... (nombre, vendedor, categoría)" />
 
-        <select id="type">
-          <option value="all">Todo</option>
-          <option value="seed">Seed</option>
-          <option value="user">Usuarios</option>
-        </select>
+          <select id="type">
+            <option value="all">Todo</option>
+            <option value="seed">Seed</option>
+            <option value="user">Usuarios</option>
+          </select>
 
-        <select id="cat">
-          <option value="all">Todas las categorías</option>
-          <option value="electronica">Electrónica</option>
-          <option value="servicio">Servicios</option>
-          <option value="comida">Comida</option>
-        </select>
+          <select id="cat">
+            <option value="all">Todas las categorías</option>
+            <option value="electronica">Electrónica</option>
+            <option value="servicio">Servicios</option>
+            <option value="comida">Comida</option>
+          </select>
 
-        <select id="sort">
-          <option value="recent">Orden: más recientes</option>
-          <option value="price_asc">Precio: menor a mayor</option>
-          <option value="price_desc">Precio: mayor a menor</option>
-          <option value="name_asc">Nombre: A-Z</option>
-        </select>
+          <select id="sort">
+            <option value="recent">Orden: más recientes</option>
+            <option value="price_asc">Precio: menor a mayor</option>
+            <option value="price_desc">Precio: mayor a menor</option>
+            <option value="name_asc">Nombre: A-Z</option>
+          </select>
 
-        <span class="pill" id="count">0 items</span>
+          <span class="pill" id="count">0 items</span>
+        </div>
+
+        <button class="btn primary" id="add" type="button">+ Agregar producto</button>
       </div>
 
       <table class="table">
@@ -57,14 +60,14 @@
       </table>
     </div>
 
-    <!-- Form editar -->
+    <!-- Formulario CRUD -->
     <div class="card" id="formCard" style="margin-top:14px" hidden>
-      <h3 id="formTitle">Editar item</h3>
+      <h3 id="formTitle">Agregar producto</h3>
 
       <div class="grid" style="margin-top:10px">
         <div style="grid-column: span 6">
           <label class="small">Nombre</label>
-          <input class="input" id="fname" placeholder="Nombre" />
+          <input class="input" id="fname" placeholder="Ej. Kit Arduino avanzado" />
         </div>
 
         <div style="grid-column: span 3">
@@ -98,7 +101,7 @@
 
       <div class="row" style="margin-top:14px">
         <button class="btn" id="cancel" type="button">Cancelar</button>
-        <button class="btn primary" id="save" type="button">Guardar cambios</button>
+        <button class="btn primary" id="save" type="button">Guardar</button>
       </div>
 
       <div id="ok" class="notice" hidden style="margin-top:12px">Guardado.</div>
@@ -108,9 +111,6 @@
   <script src="../js/data.js"></script>
   <script src="../js/app.js"></script>
   <script src="../js/admin_nav.js"></script>
-  <script src="../js/auth.js"></script>
-  <script src="../js/admin_guard.js"></script>
   <script src="../js/admin_moderacion.js"></script>
 </body>
-
 </html>
