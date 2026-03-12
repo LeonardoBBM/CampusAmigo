@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <a class="pill" href="carrito.html">Carrito: <b data-cart-count>0</b></a>
           <a class="btn" href="login.html">Login</a>
           <a class="btn" href="registro.html">Registro</a>
+          <a class="pill" href="admin/index.html">Admin</a>
         </div>
       </div>
     </div>
