@@ -13,9 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <nav class="links">
         <a href="index.html">Inicio</a>
-        <a href="publicaciones.html">Productos</a>
-        <a href="../catalogo.html">Ver sitio</a>
+        <a href="publicaciones.html">Moderación</a>
       </nav>
+
+      <div class="actions">
+        <span id="nav-auth"></span>
+      </div>
     </div>
   `;
 });

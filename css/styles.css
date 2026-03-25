@@ -670,32 +670,3 @@ select {
 select {
   width: 100%;
 }
-
-/* =========================
-   Imágenes de productos
-   ========================= */
-
-.prod-media {
-  height: 140px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(36, 200, 219, .18), rgba(217, 29, 100, .12));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.prod-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* fallback si no hay imagen */
-.prod-fallback {
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 15px;
-}
