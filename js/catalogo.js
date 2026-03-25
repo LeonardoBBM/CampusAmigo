@@ -7,30 +7,14 @@ const cat = document.querySelector("#cat");
 const sort = document.querySelector("#sort");
 const count = document.querySelector("#count");
 
-function productImageHtml(p){
-  if (p.image) {
-    return `
-      <div class="prod-media">
-        <img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=&quot;prod-fallback&quot;>CampusAmigo</div>'">
-      </div>
-    `;
-  }
-
-  return `
-    <div class="prod-media">
-      <div class="prod-fallback">CampusAmigo</div>
-    </div>
-  `;
-}
-
 function render(){
   let items = getProducts();
 
-  const term = (q.value || "").trim().toLowerCase();
+  const term = (q.value||"").trim().toLowerCase();
   if(term){
     items = items.filter(p =>
-      (p.name || "").toLowerCase().includes(term) ||
-      (p.desc || "").toLowerCase().includes(term)
+      (p.name||"").toLowerCase().includes(term) ||
+      (p.desc||"").toLowerCase().includes(term)
     );
   }
 
@@ -48,7 +32,7 @@ function render(){
 
     return `
       <article class="card product">
-        ${productImageHtml(p)}
+        <div class="prod-img">CampusAmigo</div>
 
         <div class="p-body" style="margin-top:10px">
           <div class="p-tag">
