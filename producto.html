@@ -30,6 +30,11 @@
           <span class="price" id="price">$0.00</span>
         </div>
 
+        <div class="row" style="margin-top:10px">
+          <span class="small">Vendedor</span>
+          <b id="seller">—</b>
+        </div>
+
         <p class="small" id="desc" style="margin-top:12px">—</p>
 
         <hr />
@@ -46,6 +51,28 @@
         <div id="msg" style="margin-top:12px" class="notice" hidden></div>
       </section>
     </div>
+
+    <section class="card" style="margin-top:24px">
+      <h2>Comentarios de la comunidad</h2>
+      <p class="small">Participación simulada para reforzar la confianza del ecosistema.</p>
+
+      <div class="auth-form" style="margin-top:14px">
+        <div class="field">
+          <label for="commentUser">Nombre</label>
+          <input id="commentUser" class="input" type="text" placeholder="Ej. Leo" />
+        </div>
+
+        <div class="field">
+          <label for="commentText">Comentario</label>
+          <textarea id="commentText" class="input" rows="3" placeholder="Escribe tu comentario..."></textarea>
+        </div>
+
+        <button id="commentBtn" class="btn primary" type="button">Publicar comentario</button>
+      </div>
+
+      <div id="commentMsg" class="notice" hidden style="margin-top:12px"></div>
+      <div id="commentList" class="comment-list"></div>
+    </section>
 
     <h2 style="margin-top:24px">Productos relacionados</h2>
     <section id="rel" class="products"></section>

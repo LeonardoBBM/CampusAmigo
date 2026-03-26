@@ -64,7 +64,7 @@ window.SEED_PRODUCTS = [
   },
   {
     id: "p8",
-    name: "Burrito de desayuno",
+    name: "Burritos",
     price: 45,
     category: "comida",
     tag: "",

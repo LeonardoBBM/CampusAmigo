@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <nav class="links">
           <a href="index.html">Inicio</a>
           <a href="catalogo.html">Catálogo</a>
+          <a href="publicar.html">Publicar</a>
+          <a href="subasta.html">Subasta</a>
+          <a href="promociones.html">Promociones</a>
           <a href="nosotros.html">Nosotros</a>
           <a href="contacto.html">Contacto</a>
         </nav>

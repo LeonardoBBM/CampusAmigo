@@ -1,10 +1,6 @@
 ensureSeed();
 updateCartBadge();
 
-// Bloqueo: solo con sesión
-const u = requireLoginOrRedirect("publicar.html");
-if (!u) { /* redirigido */ }
-
 const $ = (s) => document.querySelector(s);
 const msg = $("#msg");
 
@@ -14,35 +10,19 @@ function setMsg(text, danger = false) {
     msg.classList.toggle("danger", danger);
 }
 
-$("#save").addEventListener("click", () => {
+$("#save")?.addEventListener("click", () => {
+    const sellerName = $("#seller").value.trim();
     const name = $("#name").value.trim();
     const price = Number($("#price").value);
-    const category = $("#cat").value;
-    const tag = $("#tag").value;
-    const desc = $("#desc").value.trim();
 
-    if (!name || !price || price <= 0) {
-        setMsg("Pon un nombre y un precio válido.", true);
+    if (!sellerName || !name || !Number.isFinite(price) || price <= 0) {
+        setMsg("Completa nombre del vendedor, nombre del producto y precio válido.", true);
         return;
     }
 
-    const products = getProducts();
-    const id = "p_" + Date.now().toString(36) + Math.random().toString(16).slice(2, 6);
+    setMsg("Publicado. La publicación fue enviada correctamente.");
 
-    products.unshift({
-        id,
-        name,
-        price,
-        category,
-        tag,
-        desc,
-        sellerId: u.id,
-        sellerName: u.name,
-        createdAt: new Date().toISOString()
-    });
-
-    saveProducts(products);
-
-    setMsg("Publicado (simulado). Ya aparece en el catálogo.");
-    setTimeout(() => location.href = "mis_publicaciones.html", 800);
+    setTimeout(() => {
+        location.href = "catalogo.html";
+    }, 900);
 });

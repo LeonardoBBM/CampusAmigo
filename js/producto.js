@@ -13,6 +13,29 @@ function mediaHtml(product) {
   return `<div class="prod-fallback">Detalle</div>`;
 }
 
+function renderStaticComments() {
+  const commentList = $("#commentList");
+  if (!commentList) return;
+
+  commentList.innerHTML = `
+    <div class="comment-item">
+      <div class="comment-head">
+        <b>Ana</b>
+        <span class="star-row">★★★★★</span>
+      </div>
+      <div class="comment-text">Muy buen producto, se ve confiable.</div>
+    </div>
+
+    <div class="comment-item">
+      <div class="comment-head">
+        <b>Carlos</b>
+        <span class="star-row">★★★★☆</span>
+      </div>
+      <div class="comment-text">Buena presentación y descripción clara.</div>
+    </div>
+  `;
+}
+
 if (!p) {
   document.querySelector("main").innerHTML =
     `<div class="container">
@@ -25,6 +48,11 @@ if (!p) {
   $("#price").textContent = money(p.price);
   $("#cat").textContent = p.category;
   $("#desc").textContent = p.desc || "";
+
+  const sellerWrap = document.querySelector("#seller");
+  if (sellerWrap) {
+    sellerWrap.textContent = p.sellerId ? (p.sellerName || "Usuario") : "CampusAmigo";
+  }
 
   if (p.tag) {
     const tagClass = p.tag === "Nuevo" ? "new" : (p.tag === "Oferta" ? "sale" : "");
@@ -40,6 +68,28 @@ if (!p) {
     updateCartBadge();
 
     setTimeout(() => $("#msg").hidden = true, 1200);
+  });
+
+  // comentarios simulados
+  renderStaticComments();
+
+  $("#commentBtn")?.addEventListener("click", () => {
+    const user = ($("#commentUser").value || "").trim();
+    const text = ($("#commentText").value || "").trim();
+    const commentMsg = $("#commentMsg");
+
+    commentMsg.hidden = false;
+    commentMsg.classList.remove("danger");
+
+    if (!user || !text) {
+      commentMsg.classList.add("danger");
+      commentMsg.textContent = "Escribe nombre y comentario.";
+      return;
+    }
+
+    $("#commentUser").value = "";
+    $("#commentText").value = "";
+    commentMsg.textContent = "Comentario enviado.";
   });
 
   const rel = getProducts()

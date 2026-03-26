@@ -699,3 +699,81 @@ select {
   font-weight: 700;
   font-size: 15px;
 }
+
+/* =========================
+   Marketing visual
+   ========================= */
+
+.promo-banner {
+  background: linear-gradient(135deg, rgba(217, 29, 100, .18), rgba(36, 200, 219, .14));
+  border: 1px solid rgba(217, 29, 100, .28);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.promo-banner h2 {
+  margin: 0 0 8px;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.promo-card {
+  background: rgba(18, 26, 51, .85);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.badge-code {
+  display: inline-block;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(36, 200, 219, .12);
+  border: 1px solid rgba(36, 200, 219, .35);
+  color: #bff3ff;
+}
+
+/* =========================
+   Comentarios
+   ========================= */
+
+.comment-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.comment-item {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, .03);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.comment-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.comment-head b {
+  font-size: 14px;
+}
+
+.comment-text {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.star-row {
+  color: #ffd76a;
+  font-size: 14px;
+}

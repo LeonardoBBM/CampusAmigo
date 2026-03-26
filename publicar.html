@@ -9,27 +9,34 @@
 </head>
 
 <body>
-    <header>
-    </header>
+    <header></header>
 
-    <main class="container">
-        <h1>Publicar producto/servicio</h1>
-        <p class="small">Esto crea un producto ligado a tu usuario (seller). Marketplace sin chat.</p>
+    <main class="container auth-wrap">
+        <section class="card auth-card" style="width:min(700px,100%)">
+            <div class="auth-head">
+                <h1>Publicar producto</h1>
+            </div>
 
-        <section class="card" style="max-width:760px">
-            <div class="grid">
-                <div style="grid-column: span 8">
-                    <label class="small">Nombre</label>
-                    <input id="name" class="input" placeholder="Ej. Pack de cables Dupont" />
+            <div id="msg" class="notice" hidden></div>
+
+            <div class="auth-form">
+                <div class="field">
+                    <label for="seller">Tu nombre</label>
+                    <input id="seller" class="input" type="text" placeholder="Ej. Leo" />
                 </div>
 
-                <div style="grid-column: span 4">
-                    <label class="small">Precio</label>
-                    <input id="price" class="input" type="number" min="1" placeholder="100" />
+                <div class="field">
+                    <label for="name">Nombre del producto</label>
+                    <input id="name" class="input" type="text" placeholder="Ej. Mouse inalámbrico" />
                 </div>
 
-                <div style="grid-column: span 4">
-                    <label class="small">Categoría</label>
+                <div class="field">
+                    <label for="price">Precio</label>
+                    <input id="price" class="input" type="number" min="1" placeholder="250" />
+                </div>
+
+                <div class="field">
+                    <label for="cat">Categoría</label>
                     <select id="cat">
                         <option value="electronica">Electrónica</option>
                         <option value="servicio">Servicio</option>
@@ -37,8 +44,8 @@
                     </select>
                 </div>
 
-                <div style="grid-column: span 4">
-                    <label class="small">Etiqueta</label>
+                <div class="field">
+                    <label for="tag">Etiqueta</label>
                     <select id="tag">
                         <option value="">(ninguna)</option>
                         <option value="Nuevo">Nuevo</option>
@@ -46,37 +53,29 @@
                     </select>
                 </div>
 
-                <div style="grid-column: span 12">
-                    <label class="small">Descripción</label>
-                    <input id="desc" class="input"
-                        placeholder="Ej. Incluye 40 piezas, nuevos, entrega en biblioteca." />
+                <div class="field">
+                    <label for="desc">Descripción</label>
+                    <textarea id="desc" class="input" rows="4" placeholder="Describe el producto..."></textarea>
                 </div>
+
+                <div class="field">
+                    <label for="image">Ruta de imagen (opcional)</label>
+                    <input id="image" class="input" type="text" placeholder="Ej. assets/img/mouse.jpg" />
+                </div>
+
+                <button id="save" class="btn primary block" type="button">Publicar</button>
             </div>
 
-            <div class="row" style="margin-top:14px; gap:10px; flex-wrap:wrap">
-                <a class="btn" href="mis_publicaciones.html">Ver mis publicaciones</a>
-                <button id="save" class="btn primary">Publicar</button>
+            <div class="auth-footer">
+                Al publicar, el producto aparecerá en el catálogo como publicación de usuario.
             </div>
-
-            <div id="msg" class="notice" hidden style="margin-top:12px"></div>
-
-            <hr />
-            <p class="small">
-                Tip: el vendedor se mostrará en el detalle del producto.
-            </p>
         </section>
     </main>
 
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
     <script src="js/nav.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/marketplace.js"></script>
     <script src="js/publicar.js"></script>
-    <script>
-        ensureSeed();
-        updateCartBadge();
-    </script>
 </body>
 
 </html>
