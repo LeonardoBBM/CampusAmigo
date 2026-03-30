@@ -9,49 +9,55 @@
 </head>
 
 <body>
-    <header>
-    </header>
+    <header></header>
 
     <main class="container">
-        <h1>Mis publicaciones</h1>
-        <p class="small">Productos/servicios que tú publicaste como vendedor.</p>
+        <div class="auth-head" style="margin-top:10px">
+            <h1>Mis publicaciones</h1>
+            <p>Vista simulada del historial de productos publicados por el usuario.</p>
+        </div>
 
-        <section class="card">
-            <div class="row" style="justify-content:space-between; gap:10px; flex-wrap:wrap">
-                <a class="btn primary" href="publicar.html">+ Publicar nuevo</a>
-                <span class="small">Tip: tus publicaciones muestran tu nombre como vendedor.</span>
-            </div>
+        <div class="grid" style="margin-top:18px">
+            <article class="card product" style="grid-column: span 4">
+                <div class="prod-media">
+                    <div class="prod-fallback">Producto</div>
+                </div>
 
-            <hr />
+                <div class="p-body" style="margin-top:10px">
+                    <div class="p-tag">
+                        <span class="tag new">Publicado</span>
+                    </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Categoría</th>
-                        <th class="right">Precio</th>
-                        <th class="right">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="rows"></tbody>
-            </table>
+                    <h3 class="p-title">Mouse inalámbrico Logitech</h3>
 
-            <div id="empty" class="small" style="margin-top:12px" hidden>
-                No tienes publicaciones aún. Crea una en <b>Publicar</b>.
-            </div>
-        </section>
+                    <div class="p-meta">
+                        <span class="small">electronica</span>
+                        <span class="price">$250.00</span>
+                    </div>
+
+                    <div style="margin-top:8px">
+                        <span class="small">Usuario: Usuario Demo</span>
+                    </div>
+
+                    <hr />
+
+                    <div class="p-actions">
+                        <button class="btn">Editar</button>
+                        <button class="btn danger outline">Eliminar</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="publicar.html">Agregar publicación</a>
+            <a class="btn" href="perfil.html">Volver al perfil</a>
+        </div>
     </main>
 
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
     <script src="js/nav.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/marketplace.js"></script>
-    <script src="js/mis_publicaciones.js"></script>
-    <script>
-        ensureSeed();
-        updateCartBadge();
-    </script>
 </body>
 
 </html>
