@@ -90,7 +90,13 @@ clearBtn?.addEventListener("click", () => {
 });
 
 document.querySelector("#pay")?.addEventListener("click", () => {
-  alert("Checkout aun no disponible.");
+  const cart = getCart();
+  if (!cart.length) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  location.href = "checkout.html";
 });
 
 render();

@@ -885,3 +885,12 @@ select {
     height: 220px;
   }
 }
+
+/* =========================
+   Pasos Checkout
+   ========================= */
+#stepPill1,
+#stepPill2,
+#stepPill3 {
+  transition: opacity .2s ease;
+}

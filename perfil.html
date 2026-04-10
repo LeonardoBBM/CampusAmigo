@@ -18,7 +18,7 @@
           <span class="tag new">Perfil de usuario</span>
           <h1 style="margin:10px 0 8px">Mi espacio</h1>
           <p class="small" style="margin:0; max-width:720px">
-            Aquí puedes visualizar tu información, tus publicaciones y el historial de compras 
+            Aquí puedes visualizar tu información, tus publicaciones y el historial de compras
             comercial.
           </p>
         </div>
@@ -136,26 +136,12 @@
               <th>Fecha</th>
               <th class="right">Total</th>
               <th>Estado</th>
+              <th class="right">Detalle</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="profileOrdersRows">
             <tr>
-              <td><b>Kit Arduino básico</b></td>
-              <td>12/10/2026</td>
-              <td class="right">$450.00</td>
-              <td><span class="tag new">Entregado</span></td>
-            </tr>
-            <tr>
-              <td><b>Impresión 3D (pieza pequeña)</b></td>
-              <td>08/10/2026</td>
-              <td class="right">$80.00</td>
-              <td><span class="tag sale">En proceso</span></td>
-            </tr>
-            <tr>
-              <td><b>Burrito de desayuno</b></td>
-              <td>05/10/2026</td>
-              <td class="right">$45.00</td>
-              <td><span class="tag new">Recogido</span></td>
+              <td colspan="5" class="small">No hay compras registradas aún.</td>
             </tr>
           </tbody>
         </table>
@@ -169,6 +155,24 @@
   <script src="js/auth.js"></script>
   <script>
     renderProfile();
+  </script>
+  <script>
+    const rows = document.querySelector("#profileOrdersRows");
+    const orders = LS.get("campusamigo_orders", []);
+
+    if (rows && orders.length) {
+      rows.innerHTML = orders.map(order => `
+      <tr>
+        <td><b>${order.items[0]?.name || "Pedido"}</b></td>
+        <td>${order.date}</td>
+        <td class="right">${money(order.total)}</td>
+        <td><span class="tag new">${order.status}</span></td>
+        <td class="right">
+          <a class="btn" href="ticket.html?id=${encodeURIComponent(order.id)}">Ver detalle</a>
+        </td>
+      </tr>
+    `).join("");
+    }
   </script>
 </body>
 
