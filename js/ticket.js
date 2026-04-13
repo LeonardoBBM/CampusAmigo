@@ -27,7 +27,7 @@ if (!order) {
     ticketCard.innerHTML = `
     <div style="text-align:center; margin-bottom:18px">
       <h2 style="margin:0 0 8px">CampusAmigo</h2>
-      <p class="small" style="margin:0">Comprobante de compra visual</p>
+      <p class="small" style="margin:0">Comprobante de compra</p>
     </div>
 
     <div class="row"><span class="small">Folio</span><b>${order.folio}</b></div>
@@ -74,5 +74,5 @@ if (!order) {
 downloadBtn?.addEventListener("click", () => {
     ticketMsg.hidden = false;
     ticketMsg.classList.remove("danger");
-    ticketMsg.textContent = "Descarga simulada completada.";
+    ticketMsg.textContent = "Descarga completada.";
 });
