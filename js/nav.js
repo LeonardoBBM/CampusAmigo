@@ -27,9 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   header.innerHTML = `
     <div class="nav">
       <div class="brand">
-        <span style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block"></span>
         <a href="index.html">CampusAmigo</a>
-        <span class="badge">beta</span>
       </div>
 
       <button class="btn nav-toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
