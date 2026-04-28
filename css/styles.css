@@ -670,3 +670,227 @@ select {
 select {
   width: 100%;
 }
+
+/* =========================
+   Imágenes de productos
+   ========================= */
+
+.prod-media {
+  height: 140px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(36, 200, 219, .18), rgba(217, 29, 100, .12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prod-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* fallback si no hay imagen */
+.prod-fallback {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* =========================
+   Marketing visual
+   ========================= */
+
+.promo-banner {
+  background: linear-gradient(135deg, rgba(217, 29, 100, .18), rgba(36, 200, 219, .14));
+  border: 1px solid rgba(217, 29, 100, .28);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.promo-banner h2 {
+  margin: 0 0 8px;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.promo-card {
+  background: rgba(18, 26, 51, .85);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.badge-code {
+  display: inline-block;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(36, 200, 219, .12);
+  border: 1px solid rgba(36, 200, 219, .35);
+  color: #bff3ff;
+}
+
+/* =========================
+   Comentarios
+   ========================= */
+
+.comment-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.comment-item {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, .03);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.comment-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.comment-head b {
+  font-size: 14px;
+}
+
+.comment-text {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.star-row {
+  color: #ffd76a;
+  font-size: 14px;
+}
+
+/* =========================
+   Escaparate / landing
+   ========================= */
+
+.showcase-hero {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.showcase-copy {
+  background: linear-gradient(135deg, rgba(217, 29, 100, .14), rgba(36, 200, 219, .10));
+  border: 1px solid rgba(217, 29, 100, .22);
+  border-radius: 24px;
+  padding: 28px;
+}
+
+.showcase-copy h1 {
+  margin: 12px 0 12px;
+  font-size: 46px;
+  line-height: 1.05;
+}
+
+.showcase-copy p {
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.showcase-cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.showcase-mini-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.showcase-stat {
+  min-width: 110px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, .04);
+}
+
+.showcase-stat b {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.showcase-media {
+  display: flex;
+  justify-content: center;
+}
+
+.showcase-product-card {
+  width: 100%;
+  background: rgba(18, 26, 51, .9);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .22);
+}
+
+.showcase-product-image {
+  height: 260px;
+}
+
+.showcase-product-info {
+  margin-top: 16px;
+}
+
+.showcase-product-info h3 {
+  margin: 10px 0 8px;
+  font-size: 26px;
+}
+
+@media (max-width: 980px) {
+  .showcase-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-copy h1 {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 620px) {
+  .showcase-copy {
+    padding: 20px;
+  }
+
+  .showcase-copy h1 {
+    font-size: 32px;
+  }
+
+  .showcase-product-image {
+    height: 220px;
+  }
+}
+
+/* =========================
+   Pasos Checkout
+   ========================= */
+#stepPill1,
+#stepPill2,
+#stepPill3 {
+  transition: opacity .2s ease;
+}

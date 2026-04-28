@@ -1,44 +1,149 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>CampusAmigo | Perfil</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-</head>
-<body>
-  <header>
-  </header>
 
-  <main class="container">
-    <h1>Perfil</h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusAmigo | Perfil</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header></header>
+
+  <main class="container" style="padding-top:24px;padding-bottom:40px">
+    <section class="promo-banner" style="margin-bottom:24px">
+      <div class="row" style="align-items:center; gap:16px; flex-wrap:wrap">
+        <div style="flex:1; min-width:260px">
+          <span class="tag new">Perfil de usuario</span>
+          <h1 style="margin:10px 0 8px">Mi espacio</h1>
+          <p class="small" style="margin:0; max-width:720px">
+            Aquí puedes visualizar tu información, tus publicaciones y el historial de compras.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <span class="badge-code">Compras</span>
+          <span class="badge-code">Ventas</span>
+          <span class="badge-code">Actividad</span>
+        </div>
+      </div>
+    </section>
 
     <div id="loggedOut" class="notice danger" hidden>
       No has iniciado sesión. <a href="login.html"><b>Ir a Login</b></a>
     </div>
 
-    <div id="loggedIn" class="grid" hidden style="margin-top:14px">
-      <section class="card" style="grid-column: span 6">
-        <h3>Mis datos</h3>
-        <p class="small">Sesión simulada.</p>
-        <hr/>
-        <div class="row"><span class="small">Nombre</span><b id="pName">—</b></div>
-        <div class="row" style="margin-top:8px"><span class="small">Correo</span><b id="pEmail">—</b></div>
-        <div class="row" style="margin-top:8px"><span class="small">Rol</span><b id="pRole">Cliente</b></div>
+    <div id="loggedIn" hidden>
+      <!-- mini resumen -->
+      <section class="grid" style="margin-bottom:18px">
+        <div class="card" style="grid-column: span 4">
+          <h3 style="margin-bottom:6px">Compras</h3>
+          <p class="small" style="margin:0">Total: <b>3</b></p>
+        </div>
 
-        <div style="height:14px"></div>
-        <button id="logout" class="btn">Cerrar sesión</button>
+        <div class="card" style="grid-column: span 4">
+          <h3 style="margin-bottom:6px">Publicaciones activas</h3>
+          <p class="small" style="margin:0">Total: <b>2</b></p>
+        </div>
+
+        <div class="card" style="grid-column: span 4">
+          <h3 style="margin-bottom:6px">Estado general</h3>
+          <p class="small" style="margin:0"><b>Usuario activo</b></p>
+        </div>
       </section>
 
-      <section class="card" style="grid-column: span 6">
-        <h3>Mis compras</h3>
-        <p class="small">Por ahora historial simulado.</p>
-        <hr/>
-        <ul class="small" style="margin:0;padding-left:18px">
-          <li>Pedido #A-1023 — <b>Simulado</b></li>
-          <li>Pedido #A-1008 — <b>Simulado</b></li>
-          <li>Pedido #A-0991 — <b>Simulado</b></li>
-        </ul>
+      <!-- fila superior -->
+      <section class="grid">
+        <!-- Mis datos -->
+        <section class="card" style="grid-column: span 6">
+          <h3>Mis datos</h3>
+          <p class="small">Vista simulada para Bloque 3.</p>
+          <hr />
+
+          <div class="row">
+            <span class="small">Nombre</span>
+            <b id="pName">—</b>
+          </div>
+
+          <div class="row" style="margin-top:10px">
+            <span class="small">Correo</span>
+            <b id="pEmail">—</b>
+          </div>
+
+          <div class="row" style="margin-top:10px">
+            <span class="small">Rol</span>
+            <b>Usuario</b>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+            <a class="btn primary" href="publicar.html">Agregar publicación</a>
+            <a class="btn" href="mis_publicaciones.html">Mis publicaciones</a>
+          </div>
+
+          <div style="margin-top:18px">
+            <button id="logout" class="btn">Cerrar sesión</button>
+          </div>
+        </section>
+
+        <!-- Mis productos -->
+        <section class="card" style="grid-column: span 6">
+          <h3>Mis productos</h3>
+          <p class="small">Historial visual de publicaciones del usuario.</p>
+          <hr />
+
+          <div class="comment-list">
+            <div class="comment-item">
+              <div class="comment-head">
+                <b>Mouse inalámbrico Logitech</b>
+                <span class="tag new">Publicado</span>
+              </div>
+              <div class="comment-text">Categoría: Electrónica · Precio: $250.00 · Estado: Visible</div>
+            </div>
+
+            <div class="comment-item">
+              <div class="comment-head">
+                <b>Brownies caseros (4 pzas)</b>
+                <span class="tag sale">Activo</span>
+              </div>
+              <div class="comment-text">Categoría: Comida · Precio: $50.00 · Estado: Disponible</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <a class="btn" href="mis_publicaciones.html">Ver historial completo</a>
+          </div>
+        </section>
+      </section>
+
+      <!-- fila inferior extendida -->
+      <section class="card" style="margin-top:18px">
+        <div class="row" style="align-items:end; flex-wrap:wrap">
+          <div>
+            <h3 style="margin-bottom:6px">Historial de compras</h3>
+            <p class="small" style="margin:0">Compras simuladas realizadas dentro del ecosistema comercial.</p>
+          </div>
+          <span class="pill">Últimos movimientos</span>
+        </div>
+
+        <hr />
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Fecha</th>
+              <th class="right">Total</th>
+              <th>Estado</th>
+              <th class="right">Detalle</th>
+            </tr>
+          </thead>
+          <tbody id="profileOrdersRows">
+            <tr>
+              <td colspan="5" class="small">No hay compras registradas aún.</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </div>
   </main>
@@ -48,8 +153,26 @@
   <script src="js/nav.js"></script>
   <script src="js/auth.js"></script>
   <script>
-    ensureSeed(); updateCartBadge();
     renderProfile();
   </script>
+  <script>
+    const rows = document.querySelector("#profileOrdersRows");
+    const orders = LS.get("campusamigo_orders", []);
+
+    if (rows && orders.length) {
+      rows.innerHTML = orders.map(order => `
+      <tr>
+        <td><b>${order.items[0]?.name || "Pedido"}</b></td>
+        <td>${order.date}</td>
+        <td class="right">${money(order.total)}</td>
+        <td><span class="tag new">${order.status}</span></td>
+        <td class="right">
+          <a class="btn" href="ticket.html?id=${encodeURIComponent(order.id)}">Ver detalle</a>
+        </td>
+      </tr>
+    `).join("");
+    }
+  </script>
 </body>
+
 </html>

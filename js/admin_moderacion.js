@@ -1,4 +1,3 @@
-// js/admin_moderacion.js
 ensureSeed();
 
 const rows = document.querySelector("#rows");
@@ -8,7 +7,7 @@ const cat = document.querySelector("#cat");
 const sort = document.querySelector("#sort");
 const count = document.querySelector("#count");
 
-// form
+// Formulario
 const formCard = document.querySelector("#formCard");
 const formTitle = document.querySelector("#formTitle");
 const fname = document.querySelector("#fname");
@@ -17,103 +16,89 @@ const fcat = document.querySelector("#fcat");
 const ftag = document.querySelector("#ftag");
 const fdesc = document.querySelector("#fdesc");
 const ok = document.querySelector("#ok");
+
+const btnAdd = document.querySelector("#add");
 const btnCancel = document.querySelector("#cancel");
 const btnSave = document.querySelector("#save");
 
 let editingId = null;
 
-function isUserItem(p) { return !!p.sellerId; }
-function itemType(p) { return isUserItem(p) ? "Usuario" : "Seed"; }
-function itemSeller(p) { return isUserItem(p) ? (p.sellerName || p.sellerId || "—") : "—"; }
-
-function tagHtml(tag) {
-    if (!tag) return `<span class="small">(ninguna)</span>`;
-    const cls = tag === "Nuevo" ? "new" : (tag === "Oferta" ? "sale" : "");
-    return `<span class="tag ${cls}">${tag}</span>`;
+function isUserItem(p) {
+    return !!p.sellerId;
 }
 
-function normalize(s) { return (s || "").toString().trim().toLowerCase(); }
+function itemType(p) {
+    return isUserItem(p) ? "Usuario" : "Seed";
+}
 
-function openEdit(p) {
-    editingId = p.id;
+function itemSeller(p) {
+    return isUserItem(p) ? (p.sellerName || p.sellerId || "—") : "CampusAmigo";
+}
+
+function normalize(s) {
+    return (s || "").toString().trim().toLowerCase();
+}
+
+function resetForm() {
+    editingId = null;
+    fname.value = "";
+    fprice.value = "";
+    fcat.value = "electronica";
+    ftag.value = "";
+    fdesc.value = "";
+    ok.hidden = true;
+}
+
+function openForm(mode, product = null) {
     formCard.hidden = false;
     ok.hidden = true;
-    formTitle.textContent = `Editar: ${p.name}`;
 
-    fname.value = p.name || "";
-    fprice.value = p.price ?? "";
-    fcat.value = p.category || "electronica";
-    ftag.value = p.tag || "";
-    fdesc.value = p.desc || "";
+    if (mode === "new") {
+        formTitle.textContent = "Agregar producto";
+        resetForm();
+    } else {
+        formTitle.textContent = "Editar producto";
+        editingId = product.id;
+        fname.value = product.name || "";
+        fprice.value = product.price ?? "";
+        fcat.value = product.category || "electronica";
+        ftag.value = product.tag || "";
+        fdesc.value = product.desc || "";
+    }
 
     formCard.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function closeEdit() {
-    editingId = null;
+function closeForm() {
     formCard.hidden = true;
-    ok.hidden = true;
+    resetForm();
 }
 
-btnCancel.addEventListener("click", closeEdit);
-
-btnSave.addEventListener("click", () => {
-    const name = fname.value.trim();
-    const price = Number(fprice.value);
-
-    if (!name || !Number.isFinite(price) || price <= 0) {
-        alert("Nombre y precio válidos, por favor.");
-        return;
-    }
-
-    const products = getProducts();
-    const idx = products.findIndex(p => p.id === editingId);
-    if (idx < 0) {
-        alert("No se encontró el item (¿ya fue eliminado?).");
-        closeEdit();
-        render();
-        return;
-    }
-
-    products[idx] = {
-        ...products[idx],
-        name,
-        price,
-        category: fcat.value,
-        tag: ftag.value,
-        desc: fdesc.value.trim()
-    };
-
-    saveProducts(products);
-    ok.hidden = false;
-    ok.textContent = "Guardado.";
-    render();
-});
-
 function render() {
-    const all = getProducts();
-    let items = [...all];
+    let items = [...getProducts()];
 
-    // filtro texto
     const term = normalize(q.value);
     if (term) {
         items = items.filter(p => {
             const blob = [
-                p.name, p.desc, p.category, p.tag,
-                p.sellerName, p.sellerId
+                p.name,
+                p.desc,
+                p.category,
+                p.tag,
+                p.sellerName,
+                p.sellerId
             ].map(normalize).join(" ");
             return blob.includes(term);
         });
     }
 
-    // filtro tipo
     if (type.value === "seed") items = items.filter(p => !p.sellerId);
     if (type.value === "user") items = items.filter(p => !!p.sellerId);
 
-    // filtro categoría
-    if (cat.value !== "all") items = items.filter(p => p.category === cat.value);
+    if (cat.value !== "all") {
+        items = items.filter(p => p.category === cat.value);
+    }
 
-    // sort
     if (sort.value === "price_asc") items.sort((a, b) => a.price - b.price);
     if (sort.value === "price_desc") items.sort((a, b) => b.price - a.price);
     if (sort.value === "name_asc") items.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
@@ -144,32 +129,85 @@ function render() {
     </tr>
   `).join("");
 
-    document.querySelectorAll("[data-edit]").forEach(b => {
-        b.addEventListener("click", () => {
-            const prod = getProducts().find(x => x.id === b.dataset.edit);
-            if (prod) openEdit(prod);
+    document.querySelectorAll("[data-edit]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const prod = getProducts().find(x => x.id === btn.dataset.edit);
+            if (prod) openForm("edit", prod);
         });
     });
 
-    document.querySelectorAll("[data-del]").forEach(b => {
-        b.addEventListener("click", () => {
-            const id = b.dataset.del;
+    document.querySelectorAll("[data-del]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.dataset.del;
             const prod = getProducts().find(x => x.id === id);
             if (!prod) return;
 
-            const label = prod.sellerId ? `publicación de ${prod.sellerName || prod.sellerId}` : "producto seed";
+            const label = prod.sellerId
+                ? `publicación de ${prod.sellerName || prod.sellerId}`
+                : "producto seed";
+
             if (confirm(`¿Eliminar este item? (${label})`)) {
                 const updated = getProducts().filter(x => x.id !== id);
                 saveProducts(updated);
 
-                // si estabas editando el mismo, cierra
-                if (editingId === id) closeEdit();
-
+                if (editingId === id) closeForm();
                 render();
             }
         });
     });
 }
+
+// ===== Eventos =====
+btnAdd?.addEventListener("click", () => openForm("new"));
+btnCancel?.addEventListener("click", closeForm);
+
+btnSave?.addEventListener("click", () => {
+    const name = fname.value.trim();
+    const price = Number(fprice.value);
+
+    if (!name || !Number.isFinite(price) || price <= 0) {
+        alert("Nombre y precio válidos, por favor.");
+        return;
+    }
+
+    const products = getProducts();
+
+    if (editingId) {
+        const idx = products.findIndex(p => p.id === editingId);
+        if (idx < 0) {
+            alert("No se encontró el item.");
+            closeForm();
+            render();
+            return;
+        }
+
+        products[idx] = {
+            ...products[idx],
+            name,
+            price,
+            category: fcat.value,
+            tag: ftag.value,
+            desc: fdesc.value.trim()
+        };
+    } else {
+        const newId = "p_" + Date.now().toString(36) + Math.random().toString(16).slice(2, 6);
+
+        products.unshift({
+            id: newId,
+            name,
+            price,
+            category: fcat.value,
+            tag: ftag.value,
+            desc: fdesc.value.trim(),
+            createdAt: new Date().toISOString()
+        });
+    }
+
+    saveProducts(products);
+    ok.hidden = false;
+    ok.textContent = "Guardado.";
+    render();
+});
 
 [q, type, cat, sort].forEach(el => {
     el.addEventListener("input", render);
