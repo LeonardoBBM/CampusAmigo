@@ -2,62 +2,55 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CampusAmigo | Mis publicaciones</title>
-    <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusAmigo | Mis publicaciones</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-    <header></header>
+  <header></header>
 
-    <main class="container">
-        <div class="auth-head" style="margin-top:10px">
-            <h1>Mis publicaciones</h1>
-            <p>Vista simulada del historial de productos publicados por el usuario.</p>
-        </div>
+  <main class="container">
+    <div class="auth-head" style="margin-top:10px">
+      <h1>Mis publicaciones</h1>
+      <p>Productos que has publicado en CampusAmigo.</p>
+    </div>
 
-        <div class="grid" style="margin-top:18px">
-            <article class="card product" style="grid-column: span 4">
-                <div class="prod-media">
-                    <div class="prod-fallback">Producto</div>
-                </div>
+    <!-- Aviso si no hay publicaciones -->
+    <div id="empty" class="notice" hidden style="margin-top:18px">
+      Aún no has publicado ningún producto.
+      <a href="publicar.html"><b>Publicar ahora</b></a>
+    </div>
 
-                <div class="p-body" style="margin-top:10px">
-                    <div class="p-tag">
-                        <span class="tag new">Publicado</span>
-                    </div>
+    <!-- Tabla de publicaciones -->
+    <section class="card" style="margin-top:18px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th class="right">Precio</th>
+            <th class="right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
 
-                    <h3 class="p-title">Mouse inalámbrico Logitech</h3>
+    <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn primary" href="publicar.html">Agregar publicación</a>
+      <a class="btn" href="perfil.html">Volver al perfil</a>
+    </div>
+  </main>
 
-                    <div class="p-meta">
-                        <span class="small">electronica</span>
-                        <span class="price">$250.00</span>
-                    </div>
-
-                    <div style="margin-top:8px">
-                        <span class="small">Usuario: Usuario Demo</span>
-                    </div>
-
-                    <hr />
-
-                    <div class="p-actions">
-                        <button class="btn">Editar</button>
-                        <button class="btn danger outline">Eliminar</button>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn primary" href="publicar.html">Agregar publicación</a>
-            <a class="btn" href="perfil.html">Volver al perfil</a>
-        </div>
-    </main>
-
-    <script src="js/data.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/nav.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/marketplace.js"></script>
+  <script src="js/mis_publicaciones.js"></script>
+  <script>ensureSeed(); updateCartBadge();</script>
 </body>
 
 </html>
