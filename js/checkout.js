@@ -21,6 +21,8 @@ const paymentMethod = document.querySelector("#paymentMethod");
 const cardFields = document.querySelector("#cardFields");
 const transferFields = document.querySelector("#transferFields");
 const walletFields = document.querySelector("#walletFields");
+const wantsInvoice = document.querySelector("#wantsInvoice");
+const invoiceFields = document.querySelector("#invoiceFields");
 
 let currentStep = 1;
 
@@ -89,12 +91,23 @@ function renderStep() {
             wallet: "E-wallet"
         };
 
+        const invoiceSummary = wantsInvoice?.checked ? `
+        <hr />
+        <div class="row" style="margin-top:8px"><span class="small">Factura</span><b>Sí, al correo ${document.querySelector("#invoiceEmail").value.trim() || "—"}</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">RFC</span><b>${document.querySelector("#invoiceRfc").value.trim() || "—"}</b></div>
+        <div class="row" style="margin-top:8px"><span class="small">Razón social</span><b>${document.querySelector("#invoiceName").value.trim() || "—"}</b></div>
+        ` : `
+        <hr />
+        <div class="row" style="margin-top:8px"><span class="small">Factura</span><b>No solicitada</b></div>
+        `;
+
         checkoutSummary.innerHTML = `
       <div class="card" style="padding:14px">
         <div class="row"><span class="small">Cliente</span><b>${fullName || "—"}</b></div>
         <div class="row" style="margin-top:8px"><span class="small">Dirección</span><b>${street || "—"}</b></div>
         <div class="row" style="margin-top:8px"><span class="small">Ciudad / CP</span><b>${city || "—"} ${zip || ""}</b></div>
         <div class="row" style="margin-top:8px"><span class="small">Método</span><b>${methodMap[paymentMethod.value]}</b></div>
+        ${invoiceSummary}
       </div>
     `;
     }
@@ -128,6 +141,31 @@ function togglePaymentFields() {
     walletFields.hidden = method !== "wallet";
 }
 
+function toggleInvoiceFields() {
+    if (!invoiceFields) return;
+    invoiceFields.hidden = !wantsInvoice?.checked;
+}
+
+function validateInvoiceFields() {
+    if (!wantsInvoice?.checked) return true;
+
+    const invoiceName = document.querySelector("#invoiceName").value.trim();
+    const invoiceRfc = document.querySelector("#invoiceRfc").value.trim();
+    const invoiceEmail = document.querySelector("#invoiceEmail").value.trim();
+
+    if (!invoiceName || !invoiceRfc || !invoiceEmail) {
+        setMsg("Completa los datos de facturación o desactiva la opción de factura.", true);
+        return false;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(invoiceEmail)) {
+        setMsg("Ingresa un correo válido para enviar la factura.", true);
+        return false;
+    }
+
+    return true;
+}
+
 function validateStep2() {
     const method = paymentMethod.value;
 
@@ -142,6 +180,8 @@ function validateStep2() {
             return false;
         }
     }
+
+    if (!validateInvoiceFields()) return false;
 
     checkoutMsg.hidden = true;
     return true;
@@ -166,6 +206,17 @@ function createOrderAndContinue() {
         wallet: "E-wallet"
     };
 
+    const invoice = wantsInvoice?.checked ? {
+        requested: true,
+        id: "FAC-" + Date.now().toString().slice(-8),
+        name: document.querySelector("#invoiceName").value.trim(),
+        rfc: document.querySelector("#invoiceRfc").value.trim().toUpperCase(),
+        email: document.querySelector("#invoiceEmail").value.trim(),
+        cfdiUse: document.querySelector("#invoiceUse").value,
+        regime: document.querySelector("#invoiceRegime").value,
+        status: "Factura generada"
+    } : { requested: false, status: "No solicitada" };
+
     const order = {
         id: orderId,
         folio,
@@ -179,6 +230,7 @@ function createOrderAndContinue() {
         paymentMethod: methodMap[paymentMethod.value],
         items,
         total,
+        invoice,
         status: "Pago aprobado"
     };
 
@@ -194,6 +246,7 @@ function createOrderAndContinue() {
 }
 
 paymentMethod?.addEventListener("change", togglePaymentFields);
+wantsInvoice?.addEventListener("change", toggleInvoiceFields);
 
 prevStepBtn?.addEventListener("click", () => {
     if (currentStep > 1) {
@@ -224,4 +277,5 @@ nextStepBtn?.addEventListener("click", () => {
 
 renderOrderSummary();
 togglePaymentFields();
+toggleInvoiceFields();
 renderStep();

@@ -894,3 +894,72 @@ select {
 #stepPill3 {
   transition: opacity .2s ease;
 }
+/* =========================
+   Facturación
+   ========================= */
+.invoice-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.invoice-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.invoice-box {
+  border: 1px solid rgba(36, 200, 219, .28);
+  background: rgba(36, 200, 219, .07);
+  border-radius: 16px;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.invoice-document {
+  background: rgba(255, 255, 255, .96);
+  color: #111827;
+}
+
+.invoice-document .small,
+.invoice-document .table th {
+  color: #4b5563;
+}
+
+.invoice-document .table td,
+.invoice-document .table th,
+.invoice-document hr {
+  border-color: #d1d5db;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+@media print {
+  header,
+  .checkout-actions,
+  .auth-head p {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .container {
+    max-width: none;
+  }
+
+  .invoice-document {
+    border: 0;
+    box-shadow: none;
+  }
+}

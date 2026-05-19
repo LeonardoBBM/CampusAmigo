@@ -105,6 +105,51 @@
                                 Método listo para validación simulada.
                             </div>
                         </div>
+                        <hr />
+
+                        <div class="field">
+                            <label class="invoice-toggle">
+                                <input id="wantsInvoice" type="checkbox" />
+                                Quiero facturar mi compra
+                            </label>
+                            <p class="small" style="margin:4px 0 0">Podrás ver, descargar o enviar la factura al finalizar el pedido.</p>
+                        </div>
+
+                        <div id="invoiceFields" class="invoice-box" hidden>
+                            <h3 style="margin-top:0">Datos de facturación</h3>
+                            <div class="grid">
+                                <div style="grid-column: span 6">
+                                    <label class="small" for="invoiceRfc">RFC</label>
+                                    <input id="invoiceRfc" class="input" type="text" placeholder="Ej. BEML010101ABC" />
+                                </div>
+                                <div style="grid-column: span 6">
+                                    <label class="small" for="invoiceEmail">Correo</label>
+                                    <input id="invoiceEmail" class="input" type="email" placeholder="correo@ejemplo.com" />
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="invoiceName">Razón social / Nombre fiscal</label>
+                                <input id="invoiceName" class="input" type="text" placeholder="Ej. Leonardo Becerra Morales" />
+                            </div>
+                            <div class="grid">
+                                <div style="grid-column: span 6">
+                                    <label class="small" for="invoiceUse">Uso CFDI</label>
+                                    <select id="invoiceUse">
+                                        <option value="G03 - Gastos en general">G03 - Gastos en general</option>
+                                        <option value="P01 - Por definir">P01 - Por definir</option>
+                                        <option value="D01 - Honorarios médicos">D01 - Honorarios médicos</option>
+                                    </select>
+                                </div>
+                                <div style="grid-column: span 6">
+                                    <label class="small" for="invoiceRegime">Régimen fiscal</label>
+                                    <select id="invoiceRegime">
+                                        <option value="616 - Sin obligaciones fiscales">616 - Sin obligaciones fiscales</option>
+                                        <option value="605 - Sueldos y salarios">605 - Sueldos y salarios</option>
+                                        <option value="612 - Personas físicas con actividad empresarial">612 - Actividad empresarial</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 

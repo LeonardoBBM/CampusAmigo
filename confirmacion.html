@@ -26,8 +26,13 @@
 
             <div class="checkout-actions" style="margin-top:18px">
                 <a class="btn" href="index.html">Volver al inicio</a>
-                <a class="btn primary" href="ticket.html">Ver ticket</a>
+                <a class="btn" href="ticket.html">Ver ticket</a>
+                <a class="btn primary" id="viewInvoice" href="factura.html">Ver factura</a>
+                <button class="btn" id="downloadInvoice" type="button">Descargar factura</button>
+                <button class="btn" id="emailInvoice" type="button">Enviar por correo</button>
             </div>
+
+            <div id="invoiceActionMsg" class="notice" hidden style="margin-top:12px"></div>
         </section>
     </main>
 
